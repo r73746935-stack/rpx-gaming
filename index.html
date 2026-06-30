@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPX Gaming | Portfolio</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <style>
+        /* ১. নিচের সাদা অংশ দূর করার জন্য মূল বেস কালার */
+        html {
+            background-color: #06020f;
+            scroll-behavior: smooth;
+        }
+
+        /* ২. বডি সেটিং */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: transparent; 
+        }
+
+        /* ৩. নিখুঁত ব্যাকগ্রাউন্ড (১০০% স্থির) */
+        .bg-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('https://i.postimg.cc/tTDLrNB1/Wgm0j.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: -2; 
+            transform: translate3d(0, 0, 0);
+            will-change: transform; 
+        }
+
+        /* গ্লোবাল বক্স সাইজিং */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* নেভিগেশন বার - ডেস্কটপ */
+        .navbar {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 25px;
+            background: rgba(15, 8, 25, 0.45); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            border-radius: 50px; 
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                        inset 0 1px 5px rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(0, 229, 255, 0.6);
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            color: #e2c2ff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 8px #00e5ff;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGlowNeon {
+            0% { box-shadow: 0 0 15px rgba(0, 229, 255, 0.5); border-color: #00e5ff; }
+            50% { box-shadow: 0 0 35px rgba(176, 38, 255, 0.7); border-color: #b026ff; }
+            100% { box-shadow: 0 0 15px rgba(0, 229, 255, 0.5); border-color: #00e5ff; }
+        }
+
+        .hero-glass-box {
+            max-width: 650px;
+            margin: 140px auto 10px auto;
+            padding: 40px 25px;
+            scroll-margin-top: 140px;
+            background: rgba(12, 5, 20, 0.55);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 4px rgba(255, 255, 255, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-logo-container {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 3px solid #00e5ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: rgba(15, 5, 20, 0.8);
+            animation: pulseGlowNeon 4s infinite ease-in-out;
+            overflow: hidden;
+        }
+
+        .hero-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-title {
+            font-size: 45px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            background: linear-gradient(to right, #ff1f44, #b026ff, #00e5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(176, 38, 255, 0.3);
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .glass-box {
+            max-width: 650px;
+            margin: 30px auto;
+            padding: 35px 25px;
+            scroll-margin-top: 130px;
+            background: rgba(12, 5, 20, 0.55);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 4px rgba(255, 255, 255, 0.15);
+            animation: fadeInUp 1.2s ease-out;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .section-label {
+            font-size: 11px;
+            color: #ff1f44;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .about-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #e6d9ff;
+        }
+
+        .slider-container-design {
+            width: 100%;
+            height: 250px;
+            margin: 20px auto 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 229, 255, 0.4);
+            background: #05020a;
+        }
+
+        .slider-wrapper-design {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            animation: infiniteSlide 12s infinite cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slider-wrapper-design img {
+            width: 25%;
+            height: 100%;
+            object-fit: contain;
+            background: #0c0514;
+        }
+
+        .slider-container-badge {
+            width: 320px;  
+            height: 320px; 
+            margin: 20px auto 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 2px solid rgba(176, 38, 255, 0.6);
+            background: #05020a;
+        }
+
+        .slider-wrapper-badge {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            animation: infiniteSlide 12s infinite cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slider-wrapper-badge img {
+            width: 25%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes infiniteSlide {
+            0% { transform: translateX(0); }
+            28% { transform: translateX(0); }
+            33% { transform: translateX(-25%); }
+            61% { transform: translateX(-25%); }
+            66% { transform: translateX(-50%); }
+            94% { transform: translateX(-50%); }
+            100% { transform: translateX(-75%); }
+        }
+
+        .view-all-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 40px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
+        }
+
+        .view-all-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .community-grid {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .comm-card {
+            background: rgba(10, 5, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 22px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .comm-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(15, 10, 30, 0.8);
+        }
+
+        .fb-link-mask {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+        }
+
+        .comm-icon {
+            width: 38px;
+            height: 38px;
+            margin-bottom: 12px;
+            fill: #ffffff;
+        }
+
+        .comm-name {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .badge-btn {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+            padding: 8px 24px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+        }
+
+        /* মোবাইল রেসপন্সিভ ফিক্স */
+        @media (max-width: 600px) {
+            .navbar, .hero-glass-box, .glass-box {
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+            }
+            
+            /* নড়াচড়া বন্ধ এবং কনটেক্ট বাটন মাঝখানে আনার ফিক্স */
+            .navbar { 
+                top: 10px; 
+                width: 95%; 
+                padding: 6px 14px; /* দুই পাশে সমান স্পেসিং */
+            }
+            .nav-logo img {
+                height: 32px; /* ছোট স্ক্রিনে লোগো একটু ছোট করা হলো যাতে বাটনগুলো জায়গা পায় */
+                width: 32px;
+            }
+            .nav-links {
+                gap: 4px; /* বাটনগুলোর ভেতরের গ্যাপ কমানো হলো */
+            }
+            .nav-links a { 
+                font-size: 10px; /* লেখা একটু নিখুঁত ছোট করা হলো */
+                padding: 6px 8px; /* বাটনের ভেতরের স্পেস কমানো হলো যেন কোনায় না চাপে */
+                letter-spacing: 0.5px;
+            }
+            
+            .main-title { font-size: 32px; }
+            .glass-box { margin: 20px 15px; padding: 25px 15px; }
+            .slider-container-design { height: 190px; }
+            .slider-container-badge { width: 260px; height: 260px; }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="bg-fixed"></div>
+
+    <nav class="navbar">
+        <a href="#" class="nav-logo">
+            <img src="https://i.postimg.cc/mZ8TzXrw/file-000000004068720bb3789501691810e7.png" alt="RPX Logo">
+        </a>
+        <div class="nav-links">
+            <a href="#info">Info</a>
+            <a href="#design">Design</a>
+            <a href="#achievements">Awards</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero-glass-box" id="home">
+        <div class="hero-logo-container">
+            <img src="https://i.postimg.cc/mZ8TzXrw/file-000000004068720bb3789501691810e7.png" alt="RPX Main Logo">
+        </div>
+        <h1 class="main-title">RPX GAMING</h1>
+        <p class="subtitle">Gaming • Graphic Design</p>
+    </header>
+
+    <section id="info" class="glass-box">
+        <span class="section-label">About Me</span>
+        <h2 class="section-title">RPX INFORMATION</h2>
+        <p class="about-text">
+            Hi, I'm RAJ – I am incredibly passionate about Graphics Design and Gaming. Along my journey, I have successfully earned official Google Certified Badges that prove my skills and relentless effort. My ultimate dream is to become a professional Gaming Content Creator. I am fully focused on building my own career and future because I have absolutely no interest in doing a traditional job.
+        </p>
+    </section>
+
+    <section id="design" class="glass-box">
+        <span class="section-label">My Works</span>
+        <h2 class="section-title">Design Showcase</h2>
+        <div class="slider-container-design">
+            <div class="slider-wrapper-design">
+                <img src="https://r73746935-stack.github.io/RPX-designs/thumbnail.png" alt="RPX Design 1">
+                <img src="https://r73746935-stack.github.io/RPX-designs/how%20to%20obtain%20command%20block.png" alt="RPX Design 2">
+                <img src="https://r73746935-stack.github.io/RPX-designs/command%20block%20thumbnail.png" alt="RPX Design 3">
+                <img src="https://r73746935-stack.github.io/RPX-designs/thumbnail.png" alt="RPX Design 1 Clone">
+            </div>
+        </div>
+        <a href="https://drive.google.com/drive/folders/1vY8G8HXObnyl0Ft7OTSzTNw7daZkI22o?usp=drive_link" target="_blank" class="view-all-btn">View All</a>
+    </section>
+
+    <section id="achievements" class="glass-box">
+        <span class="section-label">Credentials</span>
+        <h2 class="section-title">ACHIEVEMENTS</h2>
+        <div class="slider-container-badge">
+            <div class="slider-wrapper-badge">
+                <img src="https://r73746935-stack.github.io/RPX-achievement/Introduction%20to%20Image%20Generation.png" alt="Google Badge 1">
+                <img src="https://r73746935-stack.github.io/RPX-achievement/Introduction%20to%20Generative%20AI.png" alt="Google Badge 2">
+                <img src="https://r73746935-stack.github.io/RPX-achievement/Create%20Image%20Captioning%20Models.png" alt="Google Badge 3">
+                <img src="https://r73746935-stack.github.io/RPX-achievement/Introduction%20to%20Image%20Generation.png" alt="Google Badge 1 Clone">
+            </div>
+        </div>
+        <a href="https://drive.google.com/drive/folders/1I0Z7DX8UvqVAjCuH6aN83Cr7ld9ZA04O?usp=drive_link" target="_blank" class="view-all-btn">View All</a>
+    </section>
+
+    <section id="contact" class="glass-box" style="margin-bottom: 80px;">
+        <span class="section-label">Connect With Me</span>
+        <h2 class="section-title">Join The Community</h2>
+        
+        <div class="community-grid">
+            <div class="comm-card">
+                <a href="https://www.facebook.com/profile.php?id=61582931245014" target="_blank" class="fb-link-mask"></a>
+                <svg class="comm-icon" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                <div class="comm-name">Facebook</div>
+                <span class="badge-btn">Join Now</span>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
